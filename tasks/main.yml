@@ -1,0 +1,22 @@
+---
+# tasks file for apigee-opdk-monitoring-telegraf-config
+- name: Fail if no influxdb is defined
+  fail:
+    msg: "Influxdb group was not defined."
+  when: groups['influxdb'] is not defined
+
+- name: Update telegraph attributes
+  cache:
+    key: "{{ item.key }}"
+    value: "{{ item.value }}"
+  with_items:
+  - { key: 'influxdb_ip', value: "{{ hostvars[groups['influxdb'][0]][interface_name].ipv4.address }}" }
+  - { key: 'influxdb_port', value: "{{ influxdb_port }}" }
+  - { key: 'telegraph_response_file', value: "{{ opdk_installer_path }}/apigee-dashboard-response-telegraph.conf" }
+
+- name: Create telegraph response file
+  template:
+    src: apigee-dashboard-response-telegraph.conf.j2
+    dest: "{{ telegraph_response_file }}"
+
+
