@@ -5,7 +5,7 @@
     msg: "Influxdb group was not defined."
   when: groups['influxdb'] is not defined
 
-- name: Update telegraph attributes
+- name: Update telegraf attributes
   cache:
     key: "{{ item.key }}"
     value: "{{ item.value }}"
