@@ -16,7 +16,7 @@
 
 - name: Create telegraph response file
   template:
-    src: apigee-dashboard-response-telegraph.conf.j2
+    src: apigee-dashboard-response-telegraf.conf.j2
     dest: "{{ telegraph_response_file }}"
 
 
