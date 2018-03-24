@@ -15,6 +15,7 @@
   - { key: 'telegraf_response_file', value: "{{ opdk_installer_path }}/apigee-dashboard-response-telegraf.conf" }
 
 - name: Create telegraf response file
+  become: yes
   template:
     src: apigee-dashboard-response-telegraf.conf.j2
     dest: "{{ telegraf_response_file }}"
